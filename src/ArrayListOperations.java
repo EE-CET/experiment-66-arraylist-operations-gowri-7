@@ -1,36 +1,45 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class ArrayListOperations {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
-        ArrayList<String> list = new ArrayList<>();
+        int itemCount = sc.nextInt();
+        List<String> cartItems = readItems(sc, itemCount);
+        String searchItem = sc.next();
 
-        for (int i = 0; i < n; i++) {
-            list.add(sc.next());
+        Collections.sort(cartItems);
+
+        printSortedItems(cartItems);
+        printSearchResult(cartItems, searchItem);
+
+        sc.close();
+    }
+
+    private static List<String> readItems(Scanner sc, int count) {
+        List<String> items = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            items.add(sc.next());
         }
+        return items;
+    }
 
-        String search = sc.next();
-
-        Collections.sort(list);
-
-        // Print exactly like required
+    private static void printSortedItems(List<String> items) {
         System.out.print("Sorted Items: [");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i));
-            if (i != list.size() - 1) {
+        for (int i = 0; i < items.size(); i++) {
+            System.out.print(items.get(i));
+            if (i < items.size() - 1) {
                 System.out.print(", ");
             }
         }
         System.out.println("]");
+    }
 
-        if (list.contains(search)) {
-            System.out.println("Found");
-        } else {
-            System.out.println("Not Found");
-        }
-
-        sc.close();
+    private static void printSearchResult(List<String> items, String target) {
+        System.out.println(items.contains(target) ? "Found" : "Not Found");
     }
 }
