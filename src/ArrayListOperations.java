@@ -6,22 +6,21 @@ public class ArrayListOperations {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int n = scanner.nextInt();
+        int n = Integer.parseInt(scanner.nextLine()); // read full line
+
         ArrayList<String> list = new ArrayList<>();
 
+        String[] items = scanner.nextLine().split(" ");
         for (int i = 0; i < n; i++) {
-            list.add(scanner.next());
+            list.add(items[i]);
         }
 
-        String searchItem = scanner.next();
+        String searchItem = scanner.nextLine();
 
-        // Sort the list
         Collections.sort(list);
 
-        // Print sorted list
         System.out.println("Sorted Items: " + list);
 
-        // Check if item exists
         if (list.contains(searchItem)) {
             System.out.println("Found");
         } else {
